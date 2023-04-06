@@ -4,17 +4,8 @@
 # > 流媒体emby服务器
 # Misakaf
 DOMAIN,cf2.misakaf.org
-# Nebula
-DOMAIN,direct.nebula-emby.com
-# CC
-DOMAIN-KEYWORD,ccemby
-# Polo
-DOMAIN,df.poloemby.xyz
-DOMAIN,cu.poloemby.xyz
-DOMAIN,happy.poloemby.xyz
-DOMAIN,cmi.pololine.ml
 # Bulesea
-DOMAIN,bsem.ddns.me
+DOMAIN,bluesea.ddns.me
 # Bluesea Music
 DOMAIN,emby-pub1.blueseacdn.com
 DOMAIN,blueseamusics.com
