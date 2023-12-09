@@ -9,17 +9,17 @@
 [Rule]
 # > 12123 - gab.122.gov.cn
 URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$,REJECT
-URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery,REJECT
+//URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery,REJECT
 
 # > 云闪付 - wallet.95516.com
+DOMAIN,ads.95516.com,REJECT
+DOMAIN,switch.cup.com.cn,REJECT
+DOMAIN,tysdk.95516.com,REJECT
 URL-REGEX,^https:\/\/wallet\.95516\.com\/s\/wl\/icon\/long,REJECT
 
-//建设银行
+# > 建设银行
+DOMAIN-KEYWORD,adv.ccb.com,REJECT
 URL-REGEX,^http:\/\/image1\.ccb\.com\/newsinfo\/eBranch\/check\/(nf\/newfin\/activity|po\/poortheme\/activity)\/\w+\.png,REJECT
-
-# > 京东 去广告
-URL-REGEX,^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(start|queryMaterialAdverts),REJECT
-URL-REGEX,^https:\/\/m\.360buyimg\.com\/mobilecms\/s\d{4}x\d{4},REJECT
 
 # > 招商银行 - webappcfg.paas.cmbchina.com     
 URL-REGEX,^https?:\/\/webappcfg\.paas\.cmbchina\.com\/v\d\/func\/getmarketconfig,REJECT-200
@@ -37,6 +37,7 @@ URL-REGEX,^https:\/\/mbs\.boc\.cn\/ubas-mgateway-static\/images\/advertType\/.+.
 URL-REGEX,^https?:\/\/zt-app\.go189\.cn\/zt-app\/welcome\/.*?Animation,REJECT
 
 # 海尔智家 //zj.haier.net
+DOMAIN-SUFFIX,ehaier.com,REJECT
 URL-REGEX,^https:\/\/zj\.haier\.net\/api-gw\/shpmResource\/waterfall\/recommend\/list\?,REJECT
 URL-REGEX,^https:\/\/zj\.haier\.net\/omsappapi\/ad\/v1\/rotation,REJECT
 
@@ -65,10 +66,19 @@ DOMAIN-SUFFIX,freeok.vip,DIRECT
 DOMAIN,ghvpie.xyz,DIRECT
 DOMAIN,bard.google.com,US
 
-# 平安好车主DOMAIN-SUFFIX,^https?:\/\/iobs\.pingan\.com\.cn\/download\/bweb-per-sf-prd\/bweb,REJECT-200DOMAIN-SUFFIX,^https?:\/\/iobs\.pingan\.com\.cn\/download\/icore-aops-base-dmz-prd\/(YourSystemName|icore-apps-ad),REJECT-200DOMAIN-SUFFIX,^https?:\/\/hcz-member\.pingan\.com\.cn\/micro-api\/homepage\/do\/app\/popbox\/getTopPopBox,REJECT-200
+# 平安好车主
+DOMAIN-SUFFIX,^https?:\/\/iobs\.pingan\.com\.cn\/download\/bweb-per-sf-prd\/bweb,REJECT-200
+DOMAIN-SUFFIX,^https?:\/\/iobs\.pingan\.com\.cn\/download\/icore-aops-base-dmz-prd\/(YourSystemName|icore-apps-ad),REJECT-200
+DOMAIN-SUFFIX,^https?:\/\/hcz-member\.pingan\.com\.cn\/micro-api\/homepage\/do\/app\/popbox\/getTopPopBox,REJECT-200
 
 # P
 DOMAIN-SUFFIX,^https:\/\/(cn|www)\.pornhub\.com\/_xa\/ads.*,REJECT
+
+# Speedtest
+DOMAIN-SUFFIX,ad.gt,REJECT
+
+# 蓝奏云
+DOMAIN,statics.woozooo.com,REJECT
 
 # 分割线——————————————————————————
 
@@ -78,9 +88,6 @@ DOMAIN-SUFFIX,^https:\/\/(cn|www)\.pornhub\.com\/_xa\/ads.*,REJECT
 
 #掌上生活 az*mbasecc.bas.cmbchina.com
 ^https:\/\/az\dmbasecc\.bas\.cmbchina\.com\/Edge\/api\/mlife\.clientface\.clientservice\.api\.advertiseService\/preCacheAdvertiseSec data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
-
-#JD
-^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=uniformRecommend data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
 
 [Script]
 # Stay - api.shenyin.name
