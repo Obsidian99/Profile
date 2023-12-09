@@ -9,13 +9,12 @@
 [Rule]
 # > 12123 - gab.122.gov.cn
 URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$,REJECT
-//URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery,REJECT
 
 # > 云闪付 - wallet.95516.com
 DOMAIN,ads.95516.com,REJECT
 DOMAIN,switch.cup.com.cn,REJECT
 DOMAIN,tysdk.95516.com,REJECT
-URL-REGEX,^https:\/\/wallet\.95516\.com\/s\/wl\/icon\/long,REJECT
+URL-REGEX,^https:\/\/wallet\.95516\.com(:10533)?\/s\/wl\/icon\/large\/1,REJECT
 
 # > 建设银行
 DOMAIN-KEYWORD,adv.ccb.com,REJECT
