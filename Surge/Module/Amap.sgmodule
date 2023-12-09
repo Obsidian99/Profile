@@ -1,0 +1,12 @@
+#!name=Amap
+#!desc=Amap utilize
+
+[Rule]
+^http:\/\/amdc\.m\.taobao\.com\/amdc\/mobileDispatch$ url script-response-header https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/header.js
+# 爱回收 //gw.aihuishou.com
+
+[Script]
+Receipt = type=http-response,pattern=https:\/\/buy\.itunes\.apple\.com\/verifyReceipt,requires-body=1,max-size=0,script-path=Script/test.js
+
+[MITM]
+hostname= %APPEND% buy.itunes.apple.com
