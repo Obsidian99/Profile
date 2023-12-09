@@ -2,7 +2,11 @@
 #!desc=简讯会员
 
 [Script]
-简讯会员 = type=http-response,pattern=^https:\/\/api\.tipsoon\.com\/api\/v1\/user\/info,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/JX.js
+简讯会员 = type=http-response,pattern=^https?:\/\/api\.tipsoon\.com\/api\/v1\/user\/info,requires-body=1,max-size=0,script-path=Script/jianxun.js
+
+[Rule]
+
+URL-REGEX,^https?:\/\/api\.tipsoon\.com\/api\/v1\/top\/ad,REJECT
 
 [MITM]
 hostname= %APPEND% api.tipsoon.com

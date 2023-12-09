@@ -1,0 +1,93 @@
+#!name=Apps Optimize
+#!desc=Ad remove
+#!system=ios
+
+[URL Rewrite]
+# Redirect Google Search Service
+^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+
+[Rule]
+# > 12123 - gab.122.gov.cn
+URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$,REJECT
+URL-REGEX,^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery,REJECT
+
+# > 云闪付 - wallet.95516.com
+URL-REGEX,^https:\/\/wallet\.95516\.com\/s\/wl\/icon\/long,REJECT
+
+//建设银行
+URL-REGEX,^http:\/\/image1\.ccb\.com\/newsinfo\/eBranch\/check\/(nf\/newfin\/activity|po\/poortheme\/activity)\/\w+\.png,REJECT
+
+# > 京东 去广告
+URL-REGEX,^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(start|queryMaterialAdverts),REJECT
+URL-REGEX,^https:\/\/m\.360buyimg\.com\/mobilecms\/s\d{4}x\d{4},REJECT
+
+# > 招商银行 - webappcfg.paas.cmbchina.com     
+URL-REGEX,^https?:\/\/webappcfg\.paas\.cmbchina\.com\/v\d\/func\/getmarketconfig,REJECT-200
+
+# > 小米运动
+URL-REGEX,^https:\/\/api-mifit-cn2\.huami\.com\/discovery\/mi\/cards\/startpage_ad,REJECT
+
+# > 萤石-i.ys7.com
+URL-REGEX,^https?:\/\/i\.ys7\.com\/api\/ads,REJECT
+
+# > 中国银行
+URL-REGEX,^https:\/\/mbs\.boc\.cn\/ubas-mgateway-static\/images\/advertType\/.+.jpg,REJECT-200
+
+# > 天翼生活
+URL-REGEX,^https?:\/\/zt-app\.go189\.cn\/zt-app\/welcome\/.*?Animation,REJECT
+
+# 海尔智家 //zj.haier.net
+URL-REGEX,^https:\/\/zj\.haier\.net\/api-gw\/shpmResource\/waterfall\/recommend\/list\?,REJECT
+URL-REGEX,^https:\/\/zj\.haier\.net\/omsappapi\/ad\/v1\/rotation,REJECT
+
+# PDD - api.pinduoduo.com, api.yangkeduo.com
+URL-REGEX,^https:\/\/api\.(pinduoduo|yangkeduo)\.com\/api\/cappuccino\/splash,REJECT
+
+# > Outlook
+DOMAIN,acdn.adnxs.com,REJECT
+DOMAIN,mediation.adnxs.com,REJECT
+DOMAIN,sin3-ib.adnxs.com,REJECT
+
+# > Microsoft
+DOMAIN-SUFFIX,ads.msn.com,REJECT
+DOMAIN-SUFFIX,ads1.msn.com,REJECT
+DOMAIN-SUFFIX,ads2.msn.com,REJECT
+DOMAIN-SUFFIX,bingads.microsoft.com,REJECT
+DOMAIN-SUFFIX,rads.msn.com,REJECT
+DOMAIN,mobileads.msn.com,REJECT
+
+# > Ameritrade
+DOMAIN-SUFFIX,tdameritrade.com,US
+DOMAIN,claude.ai,US
+DOMAIN-SUFFIX,google.com,US
+DOMAIN-SUFFIX,googleapis.com,US
+DOMAIN-SUFFIX,freeok.vip,DIRECT
+DOMAIN,ghvpie.xyz,DIRECT
+DOMAIN,bard.google.com,US
+
+# 平安好车主DOMAIN-SUFFIX,^https?:\/\/iobs\.pingan\.com\.cn\/download\/bweb-per-sf-prd\/bweb,REJECT-200DOMAIN-SUFFIX,^https?:\/\/iobs\.pingan\.com\.cn\/download\/icore-aops-base-dmz-prd\/(YourSystemName|icore-apps-ad),REJECT-200DOMAIN-SUFFIX,^https?:\/\/hcz-member\.pingan\.com\.cn\/micro-api\/homepage\/do\/app\/popbox\/getTopPopBox,REJECT-200
+
+# P
+DOMAIN-SUFFIX,^https:\/\/(cn|www)\.pornhub\.com\/_xa\/ads.*,REJECT
+
+# 分割线——————————————————————————
+
+[Map Local]
+#米家
+^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(banner|carousel\/banners|myTab|openingBanner) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+#掌上生活 az*mbasecc.bas.cmbchina.com
+^https:\/\/az\dmbasecc\.bas\.cmbchina\.com\/Edge\/api\/mlife\.clientface\.clientservice\.api\.advertiseService\/preCacheAdvertiseSec data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+#JD
+^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=uniformRecommend data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+[Script]
+# Stay - api.shenyin.name
+Stay = type=http-response,requires-body=1,pattern=^https?:\/\/api\.shenyin\.name\/stay-fork\/browse\/featured$,script-path=Script/stay.js
+
+# Pornhub
+Pornhub = type=http-response,pattern=^https?:/\/(cn|www)\.pornhub\.com\/($|(view|video).*$),requires-body=1,max-size=0,script-path=https://github.com/ddgksf2013/Scripts/raw/master/pornhub.js,script-update-interval=0
+
+[MITM]
+hostname = %APPEND% gab.122.gov.cn, api.shenyin.name, cn.pornhub.com, mbs.boc.cn, webappcfg.paas.cmbchina.com, www.google.cn, www.g.cn, az*mbasecc.bas.cmbchina.com, wallet.95516.com, iobs.pingan.com.cn, hcz-member.pingan.com.cn, acs.m.taobao.com, home.mi.com, zt-app.go189.cn, api-mifit-cn2.huami.com, i.ys7.com, api.m.jd.com, home.mi.com, zj.haier.net, api.pinduoduo.com, api.yangkeduo.com

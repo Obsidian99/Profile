@@ -1,0 +1,58 @@
+#!name=WeChat Optimize
+#!desc=Ad remove
+#!system=ios
+
+[Rule]
+# 微信小程序去广告通用规则
+DOMAIN, wxsnsdy.wxs.qq.com, REJECT
+DOMAIN, wxsmsdy.video.qq.com, REJECT
+DOMAIN, wxsnsdythumb.wxs.qq.com, REJECT
+
+# 收钱吧买单
+DOMAIN, ads-shopping.shouqianba.com, REJECT
+URL-REGEX,^https:\/\/api\.pinduoduo\.com\/api\/ktt_gateway\/activity\/feeds\/personal_home_page\/,REJECT
+
+# > 顺丰速运
+URL-REGEX,^https?:\/\/ucmp\.sf-express\.com\/cx-wechat-query\/query\/info-flow\/reconsitution-list,REJECT-200
+URL-REGEX,^https?:\/\/ucmp\.sf-express\.com\/proxy\/operation-platform\/info-flow-adver\/query$,REJECT-200
+
+# > 腾讯乘车码
+URL-REGEX,^https:\/\/ccmsupport-sz\.tenpay\.com\/cgi-bin\/common\/ccm_page_element.cgi,REJECT
+
+# 分割线——————————————————————————
+
+[Map Local]
+#易捷加油
+^https:\/\/ocrifs\.ejoy\.sinopec\.com\/advertitfs\/advert\/findAdvertInf data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+#中油好客-弹窗 - minipro.95504.net
+^https:\/\/minipro\.95504\.net\/app\/json\/ad\/getPopAdData data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+#中油好客-底部横幅
+^https:\/\/minipro\.95504\.net\/app\/json\/ad\/getIndexAdData data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+#故宫博物馆 - gugongmini.dpm.org.cn
+^https:\/\/gugongmini\.dpm\.org\.cn\/gugong_applet\/open-screen data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+# > 滴滴打车
+^https:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/core data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+# > 星巴克
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/popup data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/banner data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/global data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+# 微信公众号去除商品推广
+^https?:\/\/mp\.weixin\.qq\.com\/mp\/cps_product_info\?action data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+# 分割线——————————————————————————
+
+[Script]
+# 微信公众号广告
+http-response ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad requires-body=1,script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/self_use.js
+
+# 滴滴
+http-response ^https:\/\/common\.diditaxi\.com\.cn\/common\/v5 requires-body=1,script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/didi.js
+
+[MITM]
+hostname = %APPEND% mp.weixin.qq.com, conf.diditaxi.com.cn, common.diditaxi.com.cn,  gugongmini.dpm.org.cn, minipro.95504.net, 3pp.starbucks.com.cn, ocrifs.ejoy.sinopec.com, ucmp.sf-express.com, ccmsupport-sz.tenpay.com, api.pinduoduo.com, ads-shopping.shouqianba.com

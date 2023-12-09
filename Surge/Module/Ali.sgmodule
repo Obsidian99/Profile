@@ -1,0 +1,23 @@
+#!name=Ali Optimize
+#!desc=Ad remove & interface optimize
+#!system=ios
+
+[Rule]
+IP-CIDR,203.107.1.1/24,REJECT,no-resolve
+[Map Local]
+
+^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+//^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_info data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+
+[Script]
+
+Ali1 = type=http-response,requires-body=1,pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list,script-path=https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/adrive.js
+
+Ali2 = type=http-response,requires-body=1,pattern=^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets),script-path=https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/adrive.js 
+
+
+[MITM]
+hostname = %APPEND% api.alipan.com, member.alipan.com
