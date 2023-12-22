@@ -56,7 +56,7 @@ DOMAIN-SUFFIX,bingads.microsoft.com,REJECT
 DOMAIN-SUFFIX,rads.msn.com,REJECT
 DOMAIN,mobileads.msn.com,REJECT
 
-# > Ameritrade
+# > 一些分流
 DOMAIN-SUFFIX,tdameritrade.com,US
 DOMAIN,claude.ai,US
 DOMAIN-SUFFIX,google.com,US
@@ -64,6 +64,7 @@ DOMAIN-SUFFIX,googleapis.com,US
 DOMAIN-SUFFIX,freeok.vip,DIRECT
 DOMAIN,ghvpie.xyz,DIRECT
 DOMAIN,bard.google.com,US
+DOMAIN,generativelanguage.googleapis.com,US
 
 # 平安好车主
 DOMAIN-SUFFIX,^https?:\/\/iobs\.pingan\.com\.cn\/download\/bweb-per-sf-prd\/bweb,REJECT-200
