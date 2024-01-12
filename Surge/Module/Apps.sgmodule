@@ -87,7 +87,7 @@ DOMAIN,statics.woozooo.com,REJECT
 ^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(banner|carousel\/banners|myTab|openingBanner) data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
 
 #掌上生活 az*mbasecc.bas.cmbchina.com
-^https:\/\/az\dmbasecc\.bas\.cmbchina\.com\/Edge\/api\/mlife\.clientface\.clientservice\.api\.advertiseService\/preCacheAdvertiseSec data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
+^https:\/\/mbasecc\.bas\.cmbchina\.com\/Edge\/api\/mlife\.clientface\.clientservice\.api\.advertiseService\/preCacheAdvertiseSec data="https://raw.githubusercontent.com/Keywos/rule/main/mocks/reject-dict.json"
 
 [Script]
 # Stay - api.shenyin.name
@@ -97,4 +97,4 @@ Stay = type=http-response,requires-body=1,pattern=^https?:\/\/api\.shenyin\.name
 Pornhub = type=http-response,pattern=^https?:/\/(cn|www)\.pornhub\.com\/($|(view|video).*$),requires-body=1,max-size=0,script-path=https://github.com/ddgksf2013/Scripts/raw/master/pornhub.js,script-update-interval=0
 
 [MITM]
-hostname = %APPEND% gab.122.gov.cn, api.shenyin.name, cn.pornhub.com, mbs.boc.cn, webappcfg.paas.cmbchina.com, www.google.cn, www.g.cn, az*mbasecc.bas.cmbchina.com, wallet.95516.com, iobs.pingan.com.cn, hcz-member.pingan.com.cn, acs.m.taobao.com, home.mi.com, zt-app.go189.cn, api-mifit-cn2.huami.com, i.ys7.com, api.m.jd.com, home.mi.com, zj.haier.net, api.pinduoduo.com, api.yangkeduo.com
+hostname = %APPEND% gab.122.gov.cn, api.shenyin.name, cn.pornhub.com, mbs.boc.cn, webappcfg.paas.cmbchina.com, www.google.cn, www.g.cn, mbasecc.bas.cmbchina.com, wallet.95516.com, iobs.pingan.com.cn, hcz-member.pingan.com.cn, acs.m.taobao.com, home.mi.com, zt-app.go189.cn, api-mifit-cn2.huami.com, i.ys7.com, api.m.jd.com, home.mi.com, zj.haier.net, api.pinduoduo.com, api.yangkeduo.com
