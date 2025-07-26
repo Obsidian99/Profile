@@ -1,0 +1,9 @@
+#!name=Forward
+#!desc=Unlock Pro
+#!system=ios
+
+[Script]
+forward = type=http-request, pattern=^https?:\/\/fluxapi\.vvebo\.vip\/v1\/purchase\/iap\/subscription$, script-path=Script/forward.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% fluxapi.vvebo.vip

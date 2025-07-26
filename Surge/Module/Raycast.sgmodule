@@ -1,0 +1,9 @@
+#!name=Raycast
+#!desc=Unlock Pro+
+#!system=ios
+
+[Script]
+Raycast_pro = type=http-response,pattern=^https:\/\/backend\.raycast\.com\/api\/v1\/(me|ai\/models|me\/sync.*)$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/raycast_pro_patch.js
+
+[MITM]
+hostname = %APPEND% backend.raycast.com

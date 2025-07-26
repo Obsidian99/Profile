@@ -1,0 +1,51 @@
+#!name=🗂️personal use
+#!desc=Block ADs & others
+#!system=ios
+
+[General]
+# 代理检测
+skip-proxy = %APPEND% www.baidu.com,iosapps.itunes.apple.com
+
+# ======= 分隔线 ======= #
+
+[Rule]
+# Safari 防跳转
+DOMAIN,app-site-association.cdn-apple.com,REJECT
+
+# 一些分流
+DOMAIN-SUFFIX,tdameritrade.com,US
+DOMAIN,bl.dchwtq.asia,Amy
+DOMAIN-SUFFIX,egain.cloud,Oracle-hy // Added for: login.egain.cloud:443
+DOMAIN-SUFFIX,specialized.com,Oracle-hy // Added for: webservices.specialized.com:443
+IP-CIDR,0.0.163.146/32,FINAL,no-resolve // Added for: http://0.0.163.146/
+IP-CIDR,129.146.25.191/32,DIRECT,no-resolve
+DOMAIN-SUFFIX,oracleinfinity.io,DIRECT
+DOMAIN-SUFFIX,oraclecloud.com,DIRECT
+DOMAIN-SUFFIX,bochk.com,DIRECT
+DOMAIN,laosji.net,Amy
+DOMAIN-SUFFIX,ahhhhfs.com,FINAL
+
+# ======= 分隔线 ======= #
+
+[URL Rewrite]
+# 谷歌服务重定向 //*.google.cn
+^https?:\/\/(www\.)?g\.cn https://www.google.com 302
+^https?:\/\/(www\.)?google\.cn https://www.google.com 302
+
+# 交管12123 //gab.122.gov.cn
+^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$ - reject
+
+# ======= 分隔线 ======= #
+
+[Map Local]
+# 易捷加油mini
+^https:\/\/ocrifs\.ejoy\.sinopec\.com\/advertitfs\/advert\/findAdvertInf data-type=text data="{}" status-code=200
+
+# ======= 分隔线 ======= #
+
+[Script]
+
+# ======= 分隔线 ======= #
+
+[MITM]
+hostname = %APPEND% www.google.cn, www.g.cn, gab.122.gov.cn, minipro.95504.net
