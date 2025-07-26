@@ -1,0 +1,1 @@
+let url=$request.url,body=null;if(url.includes("search/nearbyrec_smart")){let e=JSON.parse($response.body);e.data?.modules&&(e.data.modules=["head","search_hot_words","feed_rec"],body=JSON.stringify(e))}else console.log("匹配到其他url：\n"+url);body?$done({body:body}):$done({});
