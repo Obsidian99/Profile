@@ -134,16 +134,12 @@ DOMAIN-SUFFIX,ahhhhfs.com,FINAL
 # ======= 分隔线 ======= #
 
 [Script]
-# > 12306
-# hostname = ad.12306.cn
-http-request ^https?:\/\/ad\.12306\.cn\/ad\/ser\/getAdList script-path=https://raw.githubusercontent.com/kokoryh/Script/master/js/12306.js, requires-body=true, timeout=60
-
 # > 阿里云盘
-http-response ^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets) script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true, timeout=60
-http-response ^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true, timeout=60
+Alipan1 = type=http-response, pattern=^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets), script-path= https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true
+Alipan2 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path= https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true
 
 
 # ======= 分隔线 ======= #
 
 [MITM]
-hostname = %APPEND% www.google.cn, www.g.cn, gab.122.gov.cn, minipro.95504.net, api.alipan.com, member.alipan.com, cn-acs.m.cainiao.com, amdc.m.taobao.com, gw.alicdn.com, img.alicdn.com, m*.amap.com, optimus-ads.amap.com, amap-aos-info-nogw.amap.com, service.haiersmarthomes.com, 3pp.starbucks.com.cn, api.m.jd.com, dns.jd.com, s.jiediankeji.com, aag.enmonster.com, *-spclient.spotify.com, spclient.wg.spotify.com, ccmsupport-sz.tenpay.com, ios.wps.cn, mobile-pic.cache.iciba.com, mp.weixin.qq.com, home.mi.com, i.ys7.com, webappcfg.paas.cmbchina.com, mbmodule-openapi.paas.cmbchina.com, cloud.189.cn, zt-app.go189.cn, ad.12306.cn， 
+hostname = %APPEND% www.google.cn, www.g.cn, gab.122.gov.cn, minipro.95504.net, api.alipan.com, member.alipan.com, cn-acs.m.cainiao.com, amdc.m.taobao.com, gw.alicdn.com, img.alicdn.com, m*.amap.com, optimus-ads.amap.com, amap-aos-info-nogw.amap.com, service.haiersmarthomes.com, 3pp.starbucks.com.cn, api.m.jd.com, dns.jd.com, s.jiediankeji.com, aag.enmonster.com, *-spclient.spotify.com, spclient.wg.spotify.com, ccmsupport-sz.tenpay.com, ios.wps.cn, mobile-pic.cache.iciba.com, mp.weixin.qq.com, home.mi.com, i.ys7.com, webappcfg.paas.cmbchina.com, mbmodule-openapi.paas.cmbchina.com, cloud.189.cn, zt-app.go189.cn 
