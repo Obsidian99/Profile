@@ -11,6 +11,7 @@ skip-proxy = %APPEND% www.baidu.com,iosapps.itunes.apple.com
 [Rule]
 # Safari 防跳转
 DOMAIN,app-site-association.cdn-apple.com,REJECT
+
 # 微信小程序通用规则
 DOMAIN, wxsnsdy.wxs.qq.com, REJECT
 DOMAIN, wxsmsdy.video.qq.com, REJECT
@@ -27,7 +28,6 @@ DOMAIN-SUFFIX,tdameritrade.com,US
 DOMAIN,bl.dchwtq.asia,Amy
 DOMAIN-SUFFIX,egain.cloud,Oracle-hy
 DOMAIN-SUFFIX,specialized.com,Oracle-hy
-//IP-CIDR,0.0.163.146/32,FINAL,no-resolve
 IP-CIDR,129.146.25.191/32,DIRECT,no-resolve
 DOMAIN-SUFFIX,oracleinfinity.io,DIRECT
 DOMAIN-SUFFIX,oraclecloud.com,DIRECT
@@ -46,11 +46,6 @@ DOMAIN-SUFFIX,ahhhhfs.com,FINAL
 # hostname = gab.122.gov.cn
 ^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver$ - reject
 
-# > 阿里云盘
-# hostname = api.alipan.com, member.alipan.com
-^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders - reject
-^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle - reject
-
 # 支付宝-菜鸟
 # hostname = cn-acs.m.cainiao.com, amdc.m.taobao.com
 ^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads - reject
@@ -61,18 +56,18 @@ DOMAIN-SUFFIX,ahhhhfs.com,FINAL
 
 # > 高德地图
 # hostname = m*.amap.com, optimus-ads.amap.com, amap-aos-info-nogw.amap.com
-^https?:\/\/m5\.amap\.com\/ws\/shield\/dsp\/app\/startup\/init\? - reject
-^https?:\/\/m5\.amap\.com\/ws\/valueadded\/ - reject
-^https?:\/\/optimus-ads\.amap\.com\/uploadimg\/[a-zA-Z0-9]+.gif reject-200
-^https?:\/\/amap-aos-info-nogw\.amap\.com\/ws\/aos\/alimama\/splash_screen_rt - reject
+^https?:\/\/m5\.amap\.com\/ws\/shield\/dsp\/app\/startup\/init\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https?://optimus-ads.amap.com/uploadimg/[a-zA-Z0-9]+.gif data-type=text data=" " status-code=200
 
 # > 海尔服务小程序
 # hostname = service.haiersmarthomes.com
 ^https?:\/\/service\.haiersmarthomes\.com\/management\/banner\/getBannerList\?source=4 - reject
+
 # 星巴克 3pp.starbucks.com.cn
 ^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/popup - reject
 ^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/banner - reject
 ^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/global - reject
+
 # > 京东
 # hostname = api.m.jd.com, dns.jd.com
 # 禁京东直播小窗
@@ -81,7 +76,9 @@ DOMAIN-SUFFIX,ahhhhfs.com,FINAL
 # > 街电
 # hostname = s.jiediankeji.com
 ^https?:\/\/s\.jiediankeji\.com\/adv - reject
-# 怪兽充电 aag.enmonster.com
+
+# 怪兽充电
+# hostname = aag.enmonster.com
 ^https:\/\/aag\.enmonster\.com\/apa\/index\/advert\/skin - reject
 
 # > 腾讯乘车码
@@ -96,6 +93,7 @@ DOMAIN-SUFFIX,ahhhhfs.com,FINAL
 # hostname = mp.weixin.qq.com
 # 公众号文章下方广告
 ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad response-body-replace-regex advertisement - reject
+
 # 公众号去除商品推广
 ^https?:\/\/mp\.weixin\.qq\.com\/mp\/cps_product_info\?action - reject
 
@@ -130,11 +128,13 @@ DOMAIN-SUFFIX,ahhhhfs.com,FINAL
 
 [Script]
 # > 阿里云盘
-Alipan1 = type=http-response, pattern=^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets), script-path= https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true
-Alipan2 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path= https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true
+阿里云盘 = type=http-response, pattern=^https:\/\/api\.alipan\.com\/apps\/v2\/users\/home\/(news|widgets), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true, timeout=60
+阿里云盘 = type=http-response, pattern=^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/adrive/adrive.js, requires-body=true, timeout=60
 
+# > 京东
+京东 = type=http-response, pattern=^https:\/\/api\.m\.jd\.com\/client\.action\?functionId=(deliverLayer|getTabHomeInfo|myOrderInfo|orderTrackBusiness|personinfoBusiness|start|welcomeHome), script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/jingdong/jingdong.js, requires-body=true, timeout=60
 
 # ======= 分隔线 ======= #
 
 [MITM]
-hostname = %APPEND% www.google.cn, www.g.cn, gab.122.gov.cn, minipro.95504.net, api.alipan.com, member.alipan.com, cn-acs.m.cainiao.com, amdc.m.taobao.com, gw.alicdn.com, img.alicdn.com, m*.amap.com, optimus-ads.amap.com, amap-aos-info-nogw.amap.com, service.haiersmarthomes.com, 3pp.starbucks.com.cn, api.m.jd.com, dns.jd.com, s.jiediankeji.com, aag.enmonster.com, *-spclient.spotify.com, spclient.wg.spotify.com, ccmsupport-sz.tenpay.com, ios.wps.cn, mobile-pic.cache.iciba.com, mp.weixin.qq.com, home.mi.com, i.ys7.com, webappcfg.paas.cmbchina.com, mbmodule-openapi.paas.cmbchina.com, cloud.189.cn, zt-app.go189.cn 
+hostname = %APPEND% www.google.cn, www.g.cn, gab.122.gov.cn, minipro.95504.net, cn-acs.m.cainiao.com, amdc.m.taobao.com, gw.alicdn.com, img.alicdn.com, m*.amap.com, optimus-ads.amap.com, amap-aos-info-nogw.amap.com, service.haiersmarthomes.com, 3pp.starbucks.com.cn, api.m.jd.com, dns.jd.com, s.jiediankeji.com, aag.enmonster.com, ccmsupport-sz.tenpay.com, ios.wps.cn, mobile-pic.cache.iciba.com, mp.weixin.qq.com, home.mi.com, i.ys7.com, webappcfg.paas.cmbchina.com, mbmodule-openapi.paas.cmbchina.com, cloud.189.cn, zt-app.go189.cn, api.alipan.com, member.alipan.com 
