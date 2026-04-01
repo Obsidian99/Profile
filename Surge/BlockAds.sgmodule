@@ -15,19 +15,19 @@ DOMAIN,app-site-association.cdn-apple.com,REJECT
 DOMAIN, wxsnsdy.wxs.qq.com, REJECT
 DOMAIN, wxsmsdy.video.qq.com, REJECT
 DOMAIN, wxsnsdythumb.wxs.qq.com, REJECT
-# 微信小程序
+
 # 猫眼电影
 DOMAIN, ad.maoyan.com, REJECT
 
-# 捷停车 @怎么肥事
+# 捷停车 
 DOMAIN, e.jparking.cn, REJECT
 
 # 一些分流
 DOMAIN-SUFFIX,tdameritrade.com,US
 DOMAIN,bl.dchwtq.asia,Amy
-DOMAIN-SUFFIX,egain.cloud,Oracle-hy // Added for: login.egain.cloud:443
-DOMAIN-SUFFIX,specialized.com,Oracle-hy // Added for: webservices.specialized.com:443
-//IP-CIDR,0.0.163.146/32,FINAL,no-resolve // Added for: http://0.0.163.146/
+DOMAIN-SUFFIX,egain.cloud,Oracle-hy
+DOMAIN-SUFFIX,specialized.com,Oracle-hy
+//IP-CIDR,0.0.163.146/32,FINAL,no-resolve
 IP-CIDR,129.146.25.191/32,DIRECT,no-resolve
 DOMAIN-SUFFIX,oracleinfinity.io,DIRECT
 DOMAIN-SUFFIX,oraclecloud.com,DIRECT
@@ -48,77 +48,72 @@ DOMAIN-SUFFIX,ahhhhfs.com,FINAL
 
 # > 阿里云盘
 # hostname = api.alipan.com, member.alipan.com
-^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders reject-dict
-^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle reject-dict
+^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders - reject
+^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle - reject
 
 # 支付宝-菜鸟
 # hostname = cn-acs.m.cainiao.com, amdc.m.taobao.com
-^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads reject
+^https?:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.guoguo\.nbnetflow\.ads - reject
 
 # > 钉钉
 # hostname = gw.alicdn.com, img.alicdn.com
-# 误杀少 解决阿里系的开屏 目前测试咸鱼/钉钉 感谢【zzzzzz】分享
-^https?:\/\/(gw|img)\.alicdn\.com\/imgextra\/.+\/[\w!]+\d+-\d+-.+-\b([8-9]\d{2,}|[1-9]\d{3,})\b-\b([5-9]\d{2,}|[1-9]\d{3,})\b reject-dict
+^https?:\/\/(gw|img)\.alicdn\.com\/imgextra\/.+\/[\w!]+\d+-\d+-.+-\b([8-9]\d{2,}|[1-9]\d{3,})\b-\b([5-9]\d{2,}|[1-9]\d{3,})\b - reject
 
 # > 高德地图
 # hostname = m*.amap.com, optimus-ads.amap.com, amap-aos-info-nogw.amap.com
-^https?:\/\/m5\.amap\.com\/ws\/shield\/dsp\/app\/startup\/init\? reject-dict
-^https?:\/\/m5\.amap\.com\/ws\/valueadded\/ reject
+^https?:\/\/m5\.amap\.com\/ws\/shield\/dsp\/app\/startup\/init\? - reject
+^https?:\/\/m5\.amap\.com\/ws\/valueadded\/ - reject
 ^https?:\/\/optimus-ads\.amap\.com\/uploadimg\/[a-zA-Z0-9]+.gif reject-200
-^https?:\/\/amap-aos-info-nogw\.amap\.com\/ws\/aos\/alimama\/splash_screen_rt reject
-# 小程序
+^https?:\/\/amap-aos-info-nogw\.amap\.com\/ws\/aos\/alimama\/splash_screen_rt - reject
+
 # > 海尔服务小程序
 # hostname = service.haiersmarthomes.com
-^https?:\/\/service\.haiersmarthomes\.com\/management\/banner\/getBannerList\?source=4 reject-dict
+^https?:\/\/service\.haiersmarthomes\.com\/management\/banner\/getBannerList\?source=4 - reject
 # 星巴克 3pp.starbucks.com.cn
-^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/popup reject-dict
-^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/banner reject-dict
-^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/global reject-dict
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/popup - reject
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/banner - reject
+^https:\/\/3pp\.starbucks\.com\.cn\/wxmem\/index\/global - reject
 # > 京东
 # hostname = api.m.jd.com, dns.jd.com
 # 禁京东直播小窗
-^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=getWidgetV1052 reject
+^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=getWidgetV1052 - reject
 
 # > 街电
 # hostname = s.jiediankeji.com
-^https?:\/\/s\.jiediankeji\.com\/adv reject-dict
+^https?:\/\/s\.jiediankeji\.com\/adv - reject
 # 怪兽充电 aag.enmonster.com
-^https:\/\/aag\.enmonster\.com\/apa\/index\/advert\/skin reject
-# > Spotify
-# hostname = *-spclient.spotify.com, spclient.wg.spotify.com
-^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/pendragon\/ reject-dict
-^https:\/\/(?:\w+-spclient|spclient\.wg)\.spotify\.com(?::443)?\/artistview\/v1\/artist\/(.*)&platform=iphone header https://spclient.wg.spotify.com/artistview/v1/artist/$1&platform=ipad
+^https:\/\/aag\.enmonster\.com\/apa\/index\/advert\/skin - reject
 
 # > 腾讯乘车码
 # hostname = ccmsupport-sz.tenpay.com
-^https?:\/\/ccmsupport-sz\.tenpay\.com\/cgi-bin\/common\/ccm_page_element.cgi reject
+^https?:\/\/ccmsupport-sz\.tenpay\.com\/cgi-bin\/common\/ccm_page_element.cgi - reject
 
 # > WPS
 # hostname = ios.wps.cn, mobile-pic.cache.iciba.com
-^https?:\/\/ios\.wps\.cn\/ad-statistics-service reject
+^https?:\/\/ios\.wps\.cn\/ad-statistics-service - reject
 
 # > 微信公众号
 # hostname = mp.weixin.qq.com
 # 公众号文章下方广告
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad response-body-replace-regex advertisement fmz200
+^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad response-body-replace-regex advertisement - reject
 # 公众号去除商品推广
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/cps_product_info\?action reject-dict
+^https?:\/\/mp\.weixin\.qq\.com\/mp\/cps_product_info\?action - reject
 
 # > 米家
 # hostname = home.mi.com
-^https?:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(banner|carousel\/banners|myTab|openingBanner) reject-dict
-^https?:\/\/home\.mi\.com\/cgi-op\/api\/v1\/resource\/realtime\/openingBanner reject-dict
+^https?:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(banner|carousel\/banners|myTab|openingBanner) - reject
+^https?:\/\/home\.mi\.com\/cgi-op\/api\/v1\/resource\/realtime\/openingBanner - reject
 
 # > 萤石
 # hostname = i.ys7.com
-^https?:\/\/i\.ys7\.com\/api\/ads reject
+^https?:\/\/i\.ys7\.com\/api\/ads - reject
 
 # > 招商银行
 # hostname = webappcfg.paas.cmbchina.com, mbmodule-openapi.paas.cmbchina.com
 # 开屏广告
 ^https?:\/\/webappcfg\.paas\.cmbchina\.com\/v\d\/func\/getmarketconfig reject-200
 # 首页横幅广告
-^https?:\/\/mbmodule-openapi\.paas\.cmbchina\.com\/graphic\/v2\/module\/graphic reject-dict
+^https?:\/\/mbmodule-openapi\.paas\.cmbchina\.com\/graphic\/v2\/module\/graphic - reject
 
 # > 中国电信
 # hostname = cloud.189.cn, zt-app.go189.cn
